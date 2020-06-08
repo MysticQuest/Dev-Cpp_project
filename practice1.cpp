@@ -9,12 +9,11 @@ using namespace std;
 void DisplayMenu();
 char GetInput();
 void ClearInput();
-
 void PrintNumbers(const vector<int> &numbers);
 vector<int> AddNumber(vector<int> &numbers);
-void DisplayMean(vector<int> &numbers);
-void DisplaySmallest(vector<int> &numbers);
-void DisplayLargest(vector<int> &numbers);
+void DisplayMean(const vector<int> &numbers);
+void DisplaySmallest(const vector<int> &numbers);
+void DisplayLargest(const vector<int> &numbers);
 
 int main()
 {
@@ -126,7 +125,7 @@ vector<int> AddNumber(vector<int> &numbers)
     return numbers;
 }
 
-void DisplayMean(vector<int> &numbers)
+void DisplayMean(const vector<int> &numbers)
 {
     int sum{0};
     double avg{0};
@@ -148,7 +147,7 @@ void DisplayMean(vector<int> &numbers)
     }
 }
 
-void DisplaySmallest(vector<int> &numbers)
+void DisplaySmallest(const vector<int> &numbers)
 {
     int min{0};
 
@@ -171,7 +170,7 @@ void DisplaySmallest(vector<int> &numbers)
     }
 }
 
-void DisplayLargest(vector<int> &numbers)
+void DisplayLargest(const vector<int> &numbers)
 {
     int max{0};
 
