@@ -11,7 +11,7 @@ int main()
     int array2[]{10, 20, 30};
 
     void Print(const int *const array, size_t size);
-    int *ApplyAll(int *arr1, size_t size1, int *arr2, size_t size2);
+    int *ApplyAll(const int *const arr1, size_t size1, const int *const arr2, size_t size2);
 
     cout << "\nArray 1: ";
     Print(array1, arr1Size);
@@ -22,11 +22,13 @@ int main()
     int *result = ApplyAll(array1, arr1Size, array2, arr2Size);
     const size_t result_size = (arr1Size * arr2Size);
 
-    cout << "Result: ";
+    cout << "\nResult: ";
     Print(result, result_size);
 
     delete[] result;
-    return 0;
+
+    int x;
+    cin >> x;
 }
 
 void Print(const int *const array, size_t size)
@@ -39,19 +41,19 @@ void Print(const int *const array, size_t size)
     cout << "}";
 }
 
-int *ApplyAll(int *arr1, size_t size1, int *arr2, size_t size2)
+int *ApplyAll(const int *const arr1, size_t size1, const int *const arr2, size_t size2)
 {
-    size_t resultSize = size1 * size2;
-    cout << "\nArray 3: ";
-    for (size_t i{0}; i < size1; i++)
+    int *newArray{};
+    newArray = new int[size1 * size2];
+    int position{0};
+
+    for (size_t i{0}; i < size2; i++)
     {
-        for (size_t j{0}; j < size2; j++)
+        for (size_t j{0}; j < size1; j++)
         {
-            int *result = new int[resultSize];
-            cout << *(arr1 + i) * *(arr2 + j) << " ";
+            newArray[position] = *(arr2 + i) * *(arr1 + j);
+            ++position;
         }
     }
-    int x;
-    cin >> x;
-    return 0;
+    return newArray;
 }
