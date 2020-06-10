@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -18,6 +19,9 @@ public:
     int getXp() { return xp; }
     int getID() { return *id; }
 
+    Player(int health_val)
+        : health{health_val} { cout << "\nCreating number Obj: " << health_val; }
+
     Player(string name_val = "none", int health_val = 0, int xp_val = 0, int identifier = 0)
         : name{name_val}, health{health_val}, xp{xp_val}
     {
@@ -25,7 +29,7 @@ public:
         id = new int;
         identifier = ++id_counter;
         *id = identifier;
-        cout << "\nCreating: " << name_val;
+        cout << "\nCreating normal Obj: " << name_val;
     }
 
     Player(const Player &s)
@@ -33,7 +37,20 @@ public:
     {
         id = new int;
         *id = *s.id;
-        cout << "\nCopying: " << name;
+        cout << "\nCopying (deep): " << name;
+    }
+    // //By delegation - a delegating constructor cannot have other mem-initializers
+    // Player(const Player &s)
+    //     : name(s.name), health(s.health), xp(s.xp), Player{*s.id}
+    // {
+    //     cout << "\nCopying: " << name;
+    // }
+
+    Player(Player &&s)
+        : name(s.name), health(s.health), xp(s.xp), id{s.id}
+    {
+        s.id = nullptr;
+        cout << "\nMoving: " << name;
     }
     ~Player()
     {
@@ -44,13 +61,17 @@ public:
 
 void DisplayPlayer(Player p)
 {
-    cout << p.getName() << " " << p.getID();
+    cout << "\nDISPLAYING: " << p.getName() << " " << p.getID();
 }
 
 int main()
 {
+    vector<Player> vec;
+    vec.push_back(Player{"test1", 10, 5});
+    vec.push_back(Player{"test2", 10, 5});
+    DisplayPlayer(vec[1]);
+    vec.push_back(Player{"test3", 10, 5});
 
-    //test blocks
     {
         Player bob;
         Player bernard{"Bernard"};
