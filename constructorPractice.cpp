@@ -3,8 +3,6 @@
 
 using namespace std;
 
-int id_counter{0};
-
 class Player
 {
 private:
@@ -14,10 +12,12 @@ private:
     int *id;
 
 public:
-    string getName() { return name; }
+    static int id_counter;
+    string setName(string name) { this->name = name; }
+    string getName() const { return name; }
     int getHealth() { return health; }
     int getXp() { return xp; }
-    int getID() { return *id; }
+    int getID() const { return *id; }
 
     Player(int health_val)
         : health{health_val} { cout << "\nCreating number Obj: " << health_val; }
@@ -59,13 +59,16 @@ public:
     }
 };
 
-void DisplayPlayer(Player p)
+int Player::id_counter{0};
+
+void DisplayPlayer(const Player &p)
 {
-    cout << "\nDISPLAYING: " << p.getName() << " " << p.getID();
+    cout << "\n***DISPLAYING***: " << p.getName() << " " << p.getID();
 }
 
 int main()
 {
+
     //test blocks
     {
         vector<Player> vec;
@@ -87,15 +90,15 @@ int main()
     }
     {
         Player otinanai{"Otinanai", 100};
-        Player DestroyerOfWorlds{"DOW", 500, 300};
-        DisplayPlayer(DestroyerOfWorlds);
+        const Player Dow{"DestroyerOfWorlds", 500, 300};
+        DisplayPlayer(Dow);
     }
     {
         cout << endl;
     }
     {
-        Player test{"TEST", 3000, 2000};
-        Player testCopy{test};
+        Player placeholder{"TEST", 3000, 2000};
+        Player placeholderCopy{placeholder};
     }
 
     int x;

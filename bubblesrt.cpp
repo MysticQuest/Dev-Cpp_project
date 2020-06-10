@@ -14,6 +14,8 @@ vector<int> AddNumber(vector<int> &numbers);
 void DisplayMean(const vector<int> &numbers);
 void DisplaySmallest(const vector<int> &numbers);
 void DisplayLargest(const vector<int> &numbers);
+void BubbleSort(vector<int> &numbers);
+void BubbleSortPointers(vector<int> &numbers);
 
 int main()
 {
@@ -52,6 +54,16 @@ int main()
             DisplayLargest(nums);
             break;
 
+        case 'X':
+        case 'x':
+            BubbleSort(nums);
+            break;
+
+        case 'Z':
+        case 'z':
+            BubbleSortPointers(nums);
+            break;
+
         default:
             cout << "   Please enter a valid character\n\n";
             break;
@@ -66,6 +78,8 @@ void DisplayMenu()
          << "   M - Display Mean of the Numbers\n"
          << "   S - Display the Smallest Number\n"
          << "   L - Display the Largest Number\n"
+         << "   X - Bubble Sort and print\n"
+         << "   Z - Bubble Sort w/ pointers and print\n"
          << "   Q - Quit\n"
          << endl;
 }
@@ -191,4 +205,46 @@ void DisplayLargest(const vector<int> &numbers)
     {
         cout << "   The list is empty\n\n";
     }
+}
+
+void swap(int *a, int *b)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void BubbleSort(vector<int> &numbers)
+{
+    int i, j;
+    for (i = 0; i < numbers.size() - 1; i++)
+    {
+        for (j = 0; j < numbers.size() - i - 1; j++)
+        {
+
+            if (numbers[j] > numbers[j + 1])
+            {
+                swap(numbers[j], numbers[j + 1]);
+            }
+        }
+    }
+    PrintNumbers(numbers);
+}
+
+void BubbleSortPointers(vector<int> &numbers)
+{
+    int *arr = &numbers[0];
+    int i, j;
+    for (i = 0; i < numbers.size() - 1; i++)
+    {
+        for (j = 0; j < numbers.size() - i - 1; j++)
+        {
+
+            if (numbers[j] > numbers[j + 1])
+            {
+                swap(numbers[j], numbers[j + 1]);
+            }
+        }
+    }
+    PrintNumbers(numbers);
 }
