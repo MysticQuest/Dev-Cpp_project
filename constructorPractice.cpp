@@ -66,21 +66,32 @@ void DisplayPlayer(Player p)
 
 int main()
 {
-    vector<Player> vec;
-    vec.push_back(Player{"test1", 10, 5});
-    vec.push_back(Player{"test2", 10, 5});
-    DisplayPlayer(vec[1]);
-    vec.push_back(Player{"test3", 10, 5});
-
+    //test blocks
+    {
+        vector<Player> vec;
+        vec.push_back(Player{"test1", 10, 5});
+        vec.push_back(Player{"test2", 10, 5});
+        DisplayPlayer(vec[1]);
+        vec.push_back(Player{"test3", 10, 5});
+    }
+    {
+        cout << endl;
+    }
     {
         Player bob;
         Player bernard{"Bernard"};
         DisplayPlayer(bernard);
     }
     {
+        cout << endl;
+    }
+    {
         Player otinanai{"Otinanai", 100};
         Player DestroyerOfWorlds{"DOW", 500, 300};
         DisplayPlayer(DestroyerOfWorlds);
+    }
+    {
+        cout << endl;
     }
     {
         Player test{"TEST", 3000, 2000};
