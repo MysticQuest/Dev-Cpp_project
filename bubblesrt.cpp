@@ -19,7 +19,7 @@ void BubbleSortPointers(vector<int> &numbers);
 
 int main()
 {
-    vector<int> nums;
+    vector<int> nums{283, 7, 56, 2536, 13, 49, 368, 856, 423, 124, 3, 1, 55, 23, 62, 0};
     char input;
 
     do
@@ -234,17 +234,22 @@ void BubbleSort(vector<int> &numbers)
 void BubbleSortPointers(vector<int> &numbers)
 {
     int *arr = &numbers[0];
-    int i, j;
-    for (i = 0; i < numbers.size() - 1; i++)
+    int *arrBytes = arr + numbers.size() - 1;
+    int iteration;
+    for (iteration = 0; iteration < numbers.size() - 1; iteration++)
     {
-        for (j = 0; j < numbers.size() - i - 1; j++)
+        arr = arr - numbers.size();
+        while (arr < arrBytes)
         {
-
-            if (numbers[j] > numbers[j + 1])
+            if (*arr > *(arr + 1))
             {
-                swap(numbers[j], numbers[j + 1]);
+                int temp = *arr;
+                *arr = *(arr + 1);
+                *(arr + 1) = temp;
             }
+            arr++;
         }
     }
+
     PrintNumbers(numbers);
 }
